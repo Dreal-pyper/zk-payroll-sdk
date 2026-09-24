@@ -17,7 +17,7 @@ import { formatDurationMs, parseTimestampMs } from "../utils/date";
 export type AuditorAccessExpiryStatus = "active" | "expiring_soon" | "expired" | "unknown";
 
 /** Default threshold for warning that an access token/key is expiring soon: 48 hours (in ms) */
-export const DEFAULT_EXPIRING_SOON_THRESHOLD_MS = 48 * 60 * 60 * 1000;
+export const DEFAULT_ACCESS_EXPIRING_SOON_THRESHOLD_MS = 48 * 60 * 60 * 1000;
 
 /**
  * Options for evaluating expiry status.
@@ -114,7 +114,7 @@ export function getAuditorAccessExpiryStatus(
   }
 
   const now = resolveReferenceTime(options.referenceTime);
-  const threshold = options.warningThresholdMs ?? DEFAULT_EXPIRING_SOON_THRESHOLD_MS;
+  const threshold = options.warningThresholdMs ?? DEFAULT_ACCESS_EXPIRING_SOON_THRESHOLD_MS;
 
   if (expiresAtMs <= now) {
     return "expired";
@@ -139,7 +139,7 @@ export function formatAuditorAccessExpiry(
 ): AuditorAccessExpiryFormatted {
   const expiresAtMs = parseTimestampMs(input.expiresAt);
   const now = resolveReferenceTime(input.referenceTime);
-  const threshold = input.warningThresholdMs ?? DEFAULT_EXPIRING_SOON_THRESHOLD_MS;
+  const threshold = input.warningThresholdMs ?? DEFAULT_ACCESS_EXPIRING_SOON_THRESHOLD_MS;
 
   const auditorId = input.auditorId;
   const redactedAuditorId = auditorId ? redactAuditorId(auditorId) : undefined;

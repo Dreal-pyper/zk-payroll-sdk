@@ -1,5 +1,5 @@
 import { analyzeApprovalInvalidation } from "./invalidationAnalyzer";
-import { CompiledPayrollPolicy, PayrollDraft } from "../policy/types";
+import { CompiledPayrollPolicy, CompiledPayrollDraft } from "../policy/types";
 
 describe("Approval Invalidation Analyzer (#404)", () => {
   const basePolicy = {
@@ -8,7 +8,7 @@ describe("Approval Invalidation Analyzer (#404)", () => {
     allowedAsset: "USDC",
   };
 
-  const sampleDraft: PayrollDraft = {
+  const sampleDraft: CompiledPayrollDraft = {
     draftId: "draft-001",
     // version: 1,
     totalAmount: "50000",
@@ -41,7 +41,7 @@ describe("Approval Invalidation Analyzer (#404)", () => {
   });
 
   it("detects recipient payout changes and requests reapproval", () => {
-    const modified: PayrollDraft = {
+    const modified: CompiledPayrollDraft = {
       ...sampleDraft,
       recipients: [
         { amount: "25000", recipientId: "GAAA..." },

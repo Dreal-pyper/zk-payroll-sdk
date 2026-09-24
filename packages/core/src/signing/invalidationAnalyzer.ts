@@ -1,4 +1,4 @@
-import { PayrollDraft, InvalidationAnalysisResult } from '../policy/types';
+import { CompiledPayrollDraft, InvalidationAnalysisResult } from '../policy/types';
 import { comparePayrollDrafts } from '../batches/diff';
 
 /**
@@ -6,8 +6,8 @@ import { comparePayrollDrafts } from '../batches/diff';
  * invalidate existing signoff approvals.
  */
 export function analyzeApprovalInvalidation(
-  originalDraft: PayrollDraft,
-  modifiedDraft: PayrollDraft
+  originalDraft: CompiledPayrollDraft,
+  modifiedDraft: CompiledPayrollDraft
 ): InvalidationAnalysisResult {
   const diff = comparePayrollDrafts(originalDraft, modifiedDraft);
   const reasons: string[] = [];

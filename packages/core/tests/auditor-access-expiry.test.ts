@@ -5,7 +5,7 @@ import {
   isAuditorAccessActive,
   isAuditorAccessExpiringSoon,
   redactAuditorId,
-  DEFAULT_EXPIRING_SOON_THRESHOLD_MS,
+  DEFAULT_ACCESS_EXPIRING_SOON_THRESHOLD_MS,
   AuditorAccessExpiryInput,
 } from "../src/audit/accessExpiry";
 
@@ -47,7 +47,7 @@ describe("Auditor Access Expiry Formatter", () => {
       );
 
       // Exactly at default threshold (48h) is expiring_soon
-      const exactThresholdTime = BASE_TIME + DEFAULT_EXPIRING_SOON_THRESHOLD_MS;
+      const exactThresholdTime = BASE_TIME + DEFAULT_ACCESS_EXPIRING_SOON_THRESHOLD_MS;
       expect(getAuditorAccessExpiryStatus(exactThresholdTime, { referenceTime: BASE_TIME })).toBe(
         "expiring_soon"
       );

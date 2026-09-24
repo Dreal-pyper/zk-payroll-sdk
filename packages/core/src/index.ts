@@ -130,6 +130,7 @@ export type { ProofVerificationErrorCodeType } from "./proofs/errors";
 // ── Proof Verification Adapter ───────────────────────────────────────────────
 export * from "./proofs/types";
 export * from "./proofs/verifierAdapter";
+export { ProofVerificationClient, verifyProofWithAdapter } from "./client";
 
 // ── Typed Contract Clients ───────────────────────────────────────────────────
 export * from "./clients";

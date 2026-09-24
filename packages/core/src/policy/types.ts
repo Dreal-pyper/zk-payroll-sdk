@@ -159,7 +159,7 @@ export interface PayrollDraftRecipient {
  * A payroll run in draft form — editable, comparable, and subject to
  * approval invalidation when its contents change after signoff.
  */
-export interface PayrollDraft {
+export interface CompiledPayrollDraft {
   draftId: string;
   totalAmount: string;
   asset: string;
@@ -169,7 +169,7 @@ export interface PayrollDraft {
   approvals: PayrollDraftApproval[];
 }
 
-/** Result of comparing two {@link PayrollDraft} versions (see `batches/diff.ts`). */
+/** Result of comparing two {@link CompiledPayrollDraft} versions (see `batches/diff.ts`). */
 export interface DraftComparisonResult {
   hasDifferences: boolean;
   changedFields: string[];

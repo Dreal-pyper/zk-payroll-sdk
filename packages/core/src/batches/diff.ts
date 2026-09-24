@@ -17,7 +17,7 @@ import { createHash } from "crypto";
 import { REDACTED_PLACEHOLDER } from "../privacy/redaction";
 import type {
   DraftComparisonResult,
-  PayrollDraft,
+  CompiledPayrollDraft,
   PayrollDraftRecipient,
 } from "../policy/types";
 
@@ -113,8 +113,8 @@ export type BatchDiffResult = DraftComparisonResult;
  * @returns A deterministic `PayrollBatchDiff`.
  */
 export function diffPayrollBatches(
-  original: PayrollDraft,
-  modified: PayrollDraft,
+  original: CompiledPayrollDraft,
+  modified: CompiledPayrollDraft,
   options: PayrollBatchDiffOptions = {}
 ): PayrollBatchDiff {
   const reveal = options.revealAmounts === true;
@@ -274,7 +274,7 @@ export function diffPayrollBatches(
  * @param draft - The draft to commit.
  * @returns A commitment string of the form `draftmeta:<hex digest>`.
  */
-export function computeDraftMetadataCommitment(draft: PayrollDraft): string {
+export function computeDraftMetadataCommitment(draft: CompiledPayrollDraft): string {
   const payload = [
     "zkpayroll-draft-metadata-v1",
     draft.draftId,
@@ -300,8 +300,8 @@ export function computeDraftMetadataCommitment(draft: PayrollDraft): string {
  * @returns A `DraftComparisonResult` with deterministic field ordering.
  */
 export function comparePayrollDrafts(
-  original: PayrollDraft,
-  modified: PayrollDraft
+  original: CompiledPayrollDraft,
+  modified: CompiledPayrollDraft
 ): DraftComparisonResult {
   const diff = diffPayrollBatches(original, modified, { revealAmounts: false });
   return {
